@@ -1,0 +1,1 @@
+H:\ProjArq\LeilaoVai\ConsoleApp\obj\Release\ConsoleApp.csproj.CoreCompileInputs.cache

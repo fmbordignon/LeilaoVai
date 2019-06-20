@@ -24,15 +24,27 @@ namespace ConsoleApp.Controller
             DAOUsuario.Add(novoUsuario);
         }
 
-        public static bool Login(string login, string senha)
+        public static int Login(string login, string senha)
         {
             var listaUsuarios = DAOUsuario.BuscarTodosUsuarios();
 
             var usuarioEncontrado = listaUsuarios.Exists(x => x.Login == login && x.Senha == senha);
 
-            return usuarioEncontrado;
+            if (usuarioEncontrado)
+            {
+                return 0;
+            }
+            else if (login.Equals("admin") && senha.Equals("admin"))
+            {
+                return 1;
+            }
+                throw new Exception($"Login ou Senha incorretos");
+            }
+           
         }
 
 
-    }
+
+
+    
 }

@@ -9,7 +9,16 @@ namespace ConsoleApp.Controller
 {
     public class LeilaoController
     {
-        
+        public void getListaLeiloesAtivos()
+        {
+            List<DTOLeilao> leiloes = DAOLeilao.getLeiloesAtivos();
+
+            foreach (DTOLeilao e in leiloes)
+            {
+                Console.WriteLine(e.ToString());
+
+            }
+        }
 
         
     }

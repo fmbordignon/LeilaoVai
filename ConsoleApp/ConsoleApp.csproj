@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Controller\CadastroLeilaoController.cs" />
     <Compile Include="Controller\CadastroUsuarioController.cs" />
-    <Compile Include="Interface\UIs.cs" />
+    <Compile Include="Interface\TelaInicial.cs" />
     <Compile Include="Negocio\DTOLeilao.cs" />
     <Compile Include="Negocio\DTOProduto.cs" />
     <Compile Include="Negocio\DTOUsuario.cs" />

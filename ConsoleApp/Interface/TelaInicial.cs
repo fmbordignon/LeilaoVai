@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Interface
 {
-    public class UIs
+    public class TelaInicial
     {
         public void MenuPrincipal()
         {
@@ -27,6 +27,7 @@ namespace ConsoleApp.Interface
             switch (op)
             {
                 case 1:
+                    Console.Clear();
                     Console.WriteLine("Digite o login:");
 
                     login = Console.ReadLine();
@@ -51,6 +52,7 @@ namespace ConsoleApp.Interface
                     break;
 
                 case 2:
+                    Console.Clear();
                     Console.WriteLine("Digite o login:");
 
                     login = Console.ReadLine();
@@ -59,7 +61,16 @@ namespace ConsoleApp.Interface
 
                     senha = Console.ReadLine();
 
-                    UsuarioController.Login(login, senha);
+                    Console.Clear();
+                    if(UsuarioController.Login(login, senha) == 0){
+                        Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
+                    }else if(UsuarioController.Login(login, senha) == 1){
+                       DashboardAdmin.Dashboard();
+                    }else{
+                        Console.WriteLine("inválido");    
+                    }
+
+
 
                     break;
 
