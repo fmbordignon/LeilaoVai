@@ -30,14 +30,14 @@ namespace ConsoleApp.Persistencia
 
         public static List<string> BuscarTodosCPF()
         {
-            var listaCPF = ListaUsuarios.Select(x => x.CPF).ToList();
+            var listaCPF = ListaUsuarios?.Select(x => x.CPF).ToList() ?? new List<string>();
 
             return listaCPF;
         }
 
         public static List<DTOUsuario> BuscarTodosUsuarios()
         {
-            return ListaUsuarios;
+            return ListaUsuarios ?? new List<DTOUsuario>();
         }
 
     }

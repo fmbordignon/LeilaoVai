@@ -10,7 +10,9 @@ namespace ConsoleApp.Controller
 {
     public static class UsuarioController
     {
-        public static void CadastraUsuario(string login, string senha, string nome, int idade, string cpf)
+        public static int id = 0;
+
+        public static void CadastraUsuario(string cpf, string senha, string nome, int idade)
         {
             var CPFUsuarios = DAOUsuario.BuscarTodosCPF();
 
@@ -19,32 +21,29 @@ namespace ConsoleApp.Controller
                 throw new Exception($"CPF já encontrado na base de dados: {cpf}");
             }
 
-            DTOUsuario novoUsuario = new DTOUsuario(login, senha, nome, idade, cpf);
+            DTOUsuario novoUsuario = new DTOUsuario(++id, cpf, senha, nome, idade, cpf);
 
             DAOUsuario.Add(novoUsuario);
         }
 
-        public static int Login(string login, string senha)
+        public static bool Login(string cpf, string senha)
         {
+            if (cpf.Equals("admin") && senha.Equals("admin"))
+            {
+                return true;
+            }
+
             var listaUsuarios = DAOUsuario.BuscarTodosUsuarios();
 
-            var usuarioEncontrado = listaUsuarios.Exists(x => x.Login == login && x.Senha == senha);
+            var usuarioEncontrado = listaUsuarios.Exists(x => x.CPF == cpf && x.Senha == senha);
 
-            if (usuarioEncontrado)
-            {
-                return 0;
-            }
-            else if (login.Equals("admin") && senha.Equals("admin"))
-            {
-                return 1;
-            }
-                throw new Exception($"Login ou Senha incorretos");
-            }
-           
+            return usuarioEncontrado;
         }
 
+    }
 
 
 
-    
+
+
 }

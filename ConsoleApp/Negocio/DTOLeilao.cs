@@ -8,18 +8,24 @@ namespace ConsoleApp.Negocio
 {
     public class DTOLeilao
     {
+        public int IdLeilao { get; set; }
+
         public DTOUsuario DonoLeilao { get; set; }
 
         public DTOProduto ProdutoLeilao { get; set; }
 
         public IStatusLeilao Status { get; set; }
 
-        public decimal LanceMinimo { get; set; }
+        public string NomeMaiorLance;
 
-        public decimal MaiorLance { get; set; }
+        public decimal MaiorLance;
 
-        public bool Ativo { get; set; }
-
-        public List<DTOUsuario> Participantes { get; set; }
+        public override string ToString()
+        {
+            return $"Id leilão: {IdLeilao}\n" +
+                   $"Produto: {ProdutoLeilao.Nome}\n" +
+                   $"Status: {Status}\n" +
+                   $"Maior lance: {MaiorLance}\n";
+        }
     }
 }

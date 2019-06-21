@@ -10,77 +10,93 @@ namespace ConsoleApp.Interface
 {
     public class TelaInicial
     {
-        public void MenuPrincipal()
+        public static void MenuPrincipal()
         {
-            Console.WriteLine(@"Selecione a operação
-                                 1 - Cadastrar
-                                 2 - Login");
-
-            int op = Convert.ToInt32(Console.ReadLine());
-
-            string login;
+            string CPF;
             string senha;
             string nome;
             int idade;
-            string CPF;
 
-            switch (op)
+            int op = 0;
+
+            while (true)
             {
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine("Digite o login:");
+                ExibirMenu();
 
-                    login = Console.ReadLine();
+                try
+                {
+                    op = Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Digite uma opção numérica");
+                    continue;
+                }
 
-                    Console.WriteLine("Digite a senha:");
+                Console.Clear();
 
-                    senha = Console.ReadLine();
+                switch (op)
+                {
 
-                    Console.WriteLine("Digite o nome:");
+                    case 1:
+                        Console.WriteLine("Digite o CPF:");
 
-                    nome = Console.ReadLine();
+                        CPF = Console.ReadLine();
 
-                    Console.WriteLine("Digite a idade:");
+                        Console.WriteLine("Digite a senha:");
 
-                    idade = Convert.ToInt32(Console.ReadLine());
+                        senha = Console.ReadLine();
 
-                    Console.WriteLine("Digite o CPF:");
+                        Console.WriteLine("Digite o nome:");
 
-                    CPF = Console.ReadLine();
+                        nome = Console.ReadLine();
 
-                    UsuarioController.CadastraUsuario(login, senha, nome, idade, CPF);
-                    break;
+                        Console.WriteLine("Digite a idade:");
 
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine("Digite o login:");
+                        idade = Convert.ToInt32(Console.ReadLine());
 
-                    login = Console.ReadLine();
+                        UsuarioController.CadastraUsuario(CPF, senha, nome, idade);
+                        break;
 
-                    Console.WriteLine("Digite a senha:");
+                    case 2:
+                        Console.WriteLine("Digite o login:");
 
-                    senha = Console.ReadLine();
+                        cpf = Console.ReadLine();
 
-                    Console.Clear();
-                    if(UsuarioController.Login(login, senha) == 0){
-                        Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
-                    }else if(UsuarioController.Login(login, senha) == 1){
-                       DashboardAdmin.Dashboard();
-                    }else{
-                        Console.WriteLine("inválido");    
-                    }
+                        Console.WriteLine("Digite a senha:");
 
+                        senha = Console.ReadLine();
 
+                        Console.Clear();
+                        if (cpf == "admin" && senha == "admin")
+                        {
+                            Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
 
-                    break;
+                            DashboardAdmin.Dashboard();
+                        }
 
-                default:
-                    Console.WriteLine("Digite uma opção válida");
-                    break;
+                        if (UsuarioController.Login(login, senha))
+                        {
+                            Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
+                            DashboardCliente.Dashboard(cpf);
+                        }
+
+                        Console.WriteLine("Login ou senha inválido");
+
+                        break;
+
+                    default:
+                        Console.WriteLine("Digite uma opção válida");
+                        break;
+                }
             }
+        }
 
-
-
+        private static void ExibirMenu()
+        {
+            Console.WriteLine("Selecione a operação\n" +
+                  "1 - Cadastrar\n" +
+                  "2 - Login");
         }
     }
 }

@@ -9,44 +9,63 @@ namespace ConsoleApp.Persistencia
 {
     public static class DAOLeilao
     {
-         public static List<DTOLeilao> ListaLeiloesAtivo;
-        public static List<DTOLeilao> ListaLeiloesFinalizados;
+        public static List<DTOLeilao> ListaLeiloes;
 
-         public static void Add(DTOLeilao leilao)
+        public static void Add(DTOLeilao leilao)
         {
             try
             {
-                if (ListaLeiloesAtivo == null)
+                if (ListaLeiloes == null)
                 {
-                    ListaLeiloesAtivo = new List<DTOLeilao>();
+                    ListaLeiloes = new List<DTOLeilao>();
                 }
 
-                ListaLeiloesAtivo.Add(leilao);
+                ListaLeiloes.Add(leilao);
             }
             catch (Exception ex)
             {
                 throw new Exception($"Houve um erro ao criar o leilao! {ex.Message}");
-            }            
+            }
         }
 
-        public static void fecharLeilao(DTOLeilao leilao){
-            try{
-                DTOLeilao leilaoFechado = ListaLeiloesAtivo.Remove(leilao);
-                ListaLeiloesFinalizados.Add(leilaoFechado);
-            }catch (Exception e){
+        public static void FecharLeilao(DTOLeilao leilao)
+        {
+            try
+            {
+                if (leilao.Status == IStatusLeilao.ABERTO)
+                {
+                    leilao.Status = IStatusLeilao.FECHADO;
+                }
+                else
+                {
+                    leilao.Status = IStatusLeilao.ABERTO;
+                }
+            }
+            catch (Exception e)
+            {
                 throw new Exception($"Erro ao cancelar Leilão! {e.Message}");
             }
         }
 
-        public static List<DTOLeilao> getLeiloesAtivos(){
-            return ListaLeiloesAtivo;
+        public static List<DTOLeilao> GetLeiloesAbertos()
+        {
+            return ListaLeiloes?.Where(x => x.Status == IStatusLeilao.ABERTO).ToList() ?? new List<DTOLeilao>();
         }
 
-          public static List<DTOLeilao> getLeiloesFechados(){
-            return ListaLeiloesFinalizados;
+        public static List<DTOLeilao> GetLeiloesFechados()
+        {
+            return ListaLeiloes?.Where(x => x.Status == IStatusLeilao.FECHADO).ToList() ?? new List<DTOLeilao>();
         }
 
+        public static List<DTOLeilao> BuscarLeiloesAbertosUsuario(string cpf)
+        {
+            return ListaLeiloes?.Where(x => x.DonoLeilao.CPF == cpf && x.Status == IStatusLeilao.ABERTO).ToList() ?? new List<DTOLeilao>();
+        }
 
+        public static List<DTOLeilao> BuscarLeiloesFechadosUsuario(string cpf)
+        {
+            return ListaLeiloes?.Where(x => x.DonoLeilao.CPF == cpf && x.Status == IStatusLeilao.FECHADO).ToList() ?? new List<DTOLeilao>();
+        }
 
     }
 }

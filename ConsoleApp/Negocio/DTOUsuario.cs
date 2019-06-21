@@ -13,23 +13,20 @@ namespace ConsoleApp.Negocio
 
         }
 
-        public DTOUsuario(string login, string senha, string nome, int idade, string cpf)
+        public DTOUsuario(string cpf, string senha, string nome, int idade)
         {
-            Login = login;
+            CPF = cpf;
             Senha = senha;
             Nome = nome;
             Idade = idade;
-            cpf = CPF;
         }
 
-        public string Login { get; set; }
+        public string CPF { get; set; }
 
         public string Senha { get; set; }
 
         public string Nome { get; set; }
 
         public int Idade { get; set; }
-
-        public string CPF { get; set; }
     }
 }

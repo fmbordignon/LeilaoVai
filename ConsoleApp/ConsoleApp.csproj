@@ -43,14 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CadastroLeilaoController.cs" />
-    <Compile Include="Controller\CadastroUsuarioController.cs" />
+    <Compile Include="Controller\LeilaoController.cs" />
+    <Compile Include="Controller\UsuarioController.cs" />
+    <Compile Include="Interface\DashboardAdmin.cs" />
+    <Compile Include="Interface\DashboardUsuario.cs" />
     <Compile Include="Interface\TelaInicial.cs" />
     <Compile Include="Negocio\DTOLeilao.cs" />
     <Compile Include="Negocio\DTOProduto.cs" />
     <Compile Include="Negocio\DTOUsuario.cs" />
     <Compile Include="Negocio\IStatusLeilao.cs" />
     <Compile Include="Persistencia\DAOLeilao.cs" />
+    <Compile Include="Persistencia\DAOUsuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

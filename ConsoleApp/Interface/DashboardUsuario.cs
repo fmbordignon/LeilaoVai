@@ -1,4 +1,4 @@
-using ConsoleApp.Controller;
+Ôªøusing ConsoleApp.Controller;
 using ConsoleApp.Negocio;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Interface
 {
-    public static class DashboardAdmin
+    public class DashboardCliente
     {
-        public static void Dashboard()
+        public static void Dashboard(string cpf)
         {
             List<DTOLeilao> leiloes = new List<DTOLeilao>();
             int op = 0;
@@ -25,7 +25,7 @@ namespace ConsoleApp.Interface
                 }
                 catch
                 {
-                    Console.WriteLine("Digite uma opÁ„o numÈrica");
+                    Console.WriteLine("Digite uma op√ß√£o num√©rica");
                     continue;
                 }
 
@@ -34,14 +34,14 @@ namespace ConsoleApp.Interface
                 switch (op)
                 {
                     case 1:
-                        Console.WriteLine("Leilıes abertos");
-                        leiloes = LeilaoController.BuscarLeiloesAbertos();
+                        Console.WriteLine("Leil√µes abertos");
+                        leiloes = LeilaoController.BuscarLeiloesAbertosUsuario(cpf);
                         Console.WriteLine(string.Join(", ", leiloes));
                         break;
 
                     case 2:
-                        Console.WriteLine("Leilıes fechados");
-                        leiloes = LeilaoController.BuscarLeiloesFechados();
+                        Console.WriteLine("Leil√µes fechados");
+                        leiloes = LeilaoController.BuscarLeiloesFechadosUsuario(cpf);
                         Console.WriteLine(string.Join(", ", leiloes));
                         break;
 
@@ -49,22 +49,24 @@ namespace ConsoleApp.Interface
                         break;
 
                     default:
-                        Console.WriteLine("Digite uma opÁ„o v·lida");
+                        Console.WriteLine("Digite uma op√ß√£o v√°lida");
                         break;
                 }
+
+                
             } while (op != 0);
 
             TelaInicial.MenuPrincipal();
-
         }
 
         private static void ExibirMenu()
         {
-            Console.WriteLine("Sistema Administrador\n");
-            Console.WriteLine("InformaÁıes do Leil„o\n" +
-                               "1 - Leilıes abertos\n" +
-                               "2 - Leilıes fechados\n" +
+            Console.WriteLine("Sistema usu√°rio\n");
+            Console.WriteLine("Informa√ß√µes do Leil√£o\n" +
+                               "1 - Leil√µes abertos\n" +
+                               "2 - Leil√µes fechados\n" +
                                "0 - Voltar");
         }
+
     }
 }

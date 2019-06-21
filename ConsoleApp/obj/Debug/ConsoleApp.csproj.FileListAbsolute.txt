@@ -9,3 +9,10 @@ H:\ProjArq\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.csprojAssemblyReference.cac
 H:\ProjArq\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
 H:\ProjArq\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.exe
 H:\ProjArq\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.pdb
+H:\LeilaoVai\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+H:\LeilaoVai\ConsoleApp\bin\Debug\ConsoleApp.exe
+H:\LeilaoVai\ConsoleApp\bin\Debug\ConsoleApp.pdb
+H:\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.csprojAssemblyReference.cache
+H:\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+H:\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.exe
+H:\LeilaoVai\ConsoleApp\obj\Debug\ConsoleApp.pdb

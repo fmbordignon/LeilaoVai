@@ -1,4 +1,5 @@
-﻿using ConsoleApp.Persistencia;
+﻿using ConsoleApp.Negocio;
+using ConsoleApp.Persistencia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,24 @@ namespace ConsoleApp.Controller
 {
     public class LeilaoController
     {
-        public void getListaLeiloesAtivos()
+        public static List<DTOLeilao> BuscarLeiloesAbertos()
         {
-            List<DTOLeilao> leiloes = DAOLeilao.getLeiloesAtivos();
-
-            foreach (DTOLeilao e in leiloes)
-            {
-                Console.WriteLine(e.ToString());
-
-            }
+            return DAOLeilao.GetLeiloesAbertos();
         }
 
-        
+        public static List<DTOLeilao> BuscarLeiloesFechados()
+        {
+            return DAOLeilao.GetLeiloesFechados();
+        }
+
+        public static List<DTOLeilao> BuscarLeiloesAbertosUsuario(string cpf)
+        {
+            return DAOLeilao.BuscarLeiloesAbertosUsuario(cpf);
+        }
+
+        public static List<DTOLeilao> BuscarLeiloesFechadosUsuario(string cpf)
+        {
+            return DAOLeilao.BuscarLeiloesFechadosUsuario(cpf);
+        }
     }
 }
