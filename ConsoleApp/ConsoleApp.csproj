@@ -49,7 +49,6 @@
     <Compile Include="Interface\DashboardUsuario.cs" />
     <Compile Include="Interface\TelaInicial.cs" />
     <Compile Include="Negocio\DTOLeilao.cs" />
-    <Compile Include="Negocio\DTOProduto.cs" />
     <Compile Include="Negocio\DTOUsuario.cs" />
     <Compile Include="Negocio\IStatusLeilao.cs" />
     <Compile Include="Persistencia\DAOLeilao.cs" />

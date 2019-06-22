@@ -16,13 +16,12 @@ namespace ConsoleApp.Interface
             string senha;
             string nome;
             int idade;
-
-            int op = 0;
-
             while (true)
             {
                 ExibirMenu();
 
+
+                int op;
                 try
                 {
                     op = Convert.ToInt32(Console.ReadLine());
@@ -61,24 +60,25 @@ namespace ConsoleApp.Interface
                     case 2:
                         Console.WriteLine("Digite o login:");
 
-                        cpf = Console.ReadLine();
+                        CPF = Console.ReadLine();
 
                         Console.WriteLine("Digite a senha:");
 
                         senha = Console.ReadLine();
 
                         Console.Clear();
-                        if (cpf == "admin" && senha == "admin")
+
+                        if (CPF == "admin" && senha == "admin")
                         {
                             Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
 
                             DashboardAdmin.Dashboard();
                         }
 
-                        if (UsuarioController.Login(login, senha))
+                        if (UsuarioController.Login(CPF, senha))
                         {
                             Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
-                            DashboardCliente.Dashboard(cpf);
+                            DashboardCliente.Dashboard(CPF);
                         }
 
                         Console.WriteLine("Login ou senha inválido");

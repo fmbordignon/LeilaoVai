@@ -29,5 +29,15 @@ namespace ConsoleApp.Controller
         {
             return DAOLeilao.BuscarLeiloesFechadosUsuario(cpf);
         }
+
+        public static DTOLeilao BuscarLeilaoPorId(int id)
+        {
+            return DAOLeilao.BuscarLeilaoPorId(id);
+        }
+
+        public static void AdicionarLeilao(DTOLeilao leilao)
+        {
+            DAOLeilao.Add(leilao);
+        }
     }
 }

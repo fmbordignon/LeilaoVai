@@ -28,16 +28,16 @@ namespace ConsoleApp.Controller
 
         public static bool Login(string cpf, string senha)
         {
-            if (cpf.Equals("admin") && senha.Equals("admin"))
-            {
-                return true;
-            }
-
             var listaUsuarios = DAOUsuario.BuscarTodosUsuarios();
 
             var usuarioEncontrado = listaUsuarios.Exists(x => x.CPF == cpf && x.Senha == senha);
 
             return usuarioEncontrado;
+        }
+
+        public static DTOUsuario BuscarUsuarioPorCPF(string cpf)
+        {
+            return DAOUsuario.BuscarPorCPF(cpf);
         }
 
     }

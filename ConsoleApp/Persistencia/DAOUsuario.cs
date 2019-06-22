@@ -40,5 +40,10 @@ namespace ConsoleApp.Persistencia
             return ListaUsuarios ?? new List<DTOUsuario>();
         }
 
+        public static DTOUsuario BuscarPorCPF(string cpf)
+        {
+            return ListaUsuarios?.Find(x => x.CPF == cpf) ?? new DTOUsuario();
+        }
+
     }
 }

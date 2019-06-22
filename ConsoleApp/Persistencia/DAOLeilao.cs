@@ -67,5 +67,10 @@ namespace ConsoleApp.Persistencia
             return ListaLeiloes?.Where(x => x.DonoLeilao.CPF == cpf && x.Status == IStatusLeilao.FECHADO).ToList() ?? new List<DTOLeilao>();
         }
 
+        public static DTOLeilao BuscarLeilaoPorId(int id)
+        {
+            return ListaLeiloes?.Find(x => x.IdLeilao == id) ?? new DTOLeilao();
+        }
+
     }
 }
