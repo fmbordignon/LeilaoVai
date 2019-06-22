@@ -21,7 +21,7 @@ namespace ConsoleApp.Controller
                 throw new Exception($"CPF já encontrado na base de dados: {cpf}");
             }
 
-            DTOUsuario novoUsuario = new DTOUsuario(++id, cpf, senha, nome, idade, cpf);
+            DTOUsuario novoUsuario = new DTOUsuario(cpf, senha, nome, idade);
 
             DAOUsuario.Add(novoUsuario);
         }
