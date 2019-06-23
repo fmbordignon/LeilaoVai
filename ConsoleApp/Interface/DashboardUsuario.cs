@@ -63,18 +63,56 @@ namespace ConsoleApp.Interface
                         break;
 
                     case 4:
-                        Console.WriteLine("Digite o id do leilão que deseja dar o lance");
+                        leiloes = LeilaoController.BuscarLeiloesAbertosUsuario(cpf);
+                        Console.WriteLine(string.Join("----------\n", leiloes));
+
+                        Console.WriteLine("Digite o id do leilão que deseja fechar");
+
+                        idLeilaoEscolhido = Convert.ToInt32(Console.ReadLine());
+
+                        bool sucessoOperacao = LeilaoController.FecharLeilaoPorId(idLeilaoEscolhido, cpf);
+
+                        if (sucessoOperacao)
+                        {
+                            Console.WriteLine("Leilão fechado com sucesso");
+                            break;
+                        }
+
+                        Console.WriteLine("Ocorreu um erro ao fechar o leilão.");
+
+                        break;
+
+                    case 5:
+                        if (!LeilaoController.BuscarLeiloesAbertos().Any())
+                        {
+                            Console.WriteLine("Não há leiloes no momento para dar lance");
+                            break;
+                        }
 
                         leiloes = LeilaoController.BuscarLeiloesAbertos();
                         Console.WriteLine(string.Join("----------\n", leiloes));
 
+                        Console.WriteLine("Digite o id do leilão que deseja dar o lance");
+
                         idLeilaoEscolhido = Convert.ToInt32(Console.ReadLine());
+
+                        leilao = LeilaoController.BuscarLeilaoPorId(idLeilaoEscolhido);
+
+                        if (leilao == null)
+                        {
+                            Console.WriteLine("Não foi encontrado o id do leilão, operação cancelada");
+                            break;
+                        }
+
+                        if(leilao.Status == IStatusLeilao.FECHADO)
+                        {
+                            Console.WriteLine("O leilão selecionado já está fechado");
+                            break;
+                        }
 
                         Console.WriteLine("Digite o lance que deseja dar");
 
                         lance = Convert.ToDecimal(Console.ReadLine());
-
-                        leilao = LeilaoController.BuscarLeilaoPorId(idLeilaoEscolhido);
 
                         if (lance > leilao.MaiorLance)
                         {
@@ -109,7 +147,8 @@ namespace ConsoleApp.Interface
                                "1 - Leilões abertos\n" +
                                "2 - Leilões fechados\n" +
                                "3 - Criar leilão\n" +
-                               "4 - Dar lance\n" +
+                               "4 - Fechar leilão\n" + 
+                               "5 - Dar lance\n" +
                                "0 - Voltar");
         }
 

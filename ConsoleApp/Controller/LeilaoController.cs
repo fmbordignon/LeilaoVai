@@ -39,5 +39,10 @@ namespace ConsoleApp.Controller
         {
             DAOLeilao.Add(leilao);
         }
+
+        public static bool FecharLeilaoPorId(int id, string cpf)
+        {
+            return DAOLeilao.FecharLeilao(id, cpf);
+        }
     }
 }
