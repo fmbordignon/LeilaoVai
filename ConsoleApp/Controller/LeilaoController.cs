@@ -58,9 +58,9 @@ namespace ConsoleApp.Controller
 
         }
 
-        public static void fecharLeilao( DTOLeilao leilao)
+        public static void fecharLeilao( int id, string cpf)
         {
-            DAOLeilao.FecharLeilao(leilao);
+            DAOLeilao.FecharLeilao(id, cpf);
         }
     }
 }

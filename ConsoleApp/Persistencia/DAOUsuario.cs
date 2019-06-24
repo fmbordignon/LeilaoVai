@@ -9,18 +9,23 @@ namespace ConsoleApp.Persistencia
 {
     public static class DAOUsuario
     {
-        public static List<DTOUsuario> ListaUsuarios;
+        private static List<DTOUsuario> ListaUsuarios;
+
+        public static List<DTOUsuario> GetInstance()
+        {
+            if (ListaUsuarios == null)
+            {
+                ListaUsuarios = new List<DTOUsuario>();
+            }
+
+            return ListaUsuarios;
+        }
 
         public static void Add(DTOUsuario usuario)
         {
             try
             {
-                if (ListaUsuarios == null)
-                {
-                    ListaUsuarios = new List<DTOUsuario>();
-                }
-
-                ListaUsuarios.Add(usuario);
+                GetInstance().Add(usuario);
             }
             catch (Exception ex)
             {
@@ -30,19 +35,19 @@ namespace ConsoleApp.Persistencia
 
         public static List<string> BuscarTodosCPF()
         {
-            var listaCPF = ListaUsuarios?.Select(x => x.CPF).ToList() ?? new List<string>();
+            var listaCPF = GetInstance().Select(x => x.CPF).ToList() ?? new List<string>();
 
             return listaCPF;
         }
 
         public static List<DTOUsuario> BuscarTodosUsuarios()
         {
-            return ListaUsuarios ?? new List<DTOUsuario>();
+            return GetInstance();
         }
 
         public static DTOUsuario BuscarPorCPF(string cpf)
         {
-            return ListaUsuarios?.Find(x => x.CPF == cpf) ?? new DTOUsuario();
+            return GetInstance().FirstOrDefault(x => x.CPF == cpf) ?? new DTOUsuario();
         }
 
     }
