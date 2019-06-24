@@ -70,21 +70,21 @@ namespace ConsoleApp.Interface
 
                         if (CPF == "admin" && senha == "admin")
                         {
-                            Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
+                            UsuarioController.Login(CPF, senha, tipoUsuario.ADMIN);
 
-                            DashboardAdmin.Dashboard();
+                        }
+                        else {
+                            UsuarioController.Login(CPF, senha, tipoUsuario.NORMAL);
+
                         }
 
-                        if (UsuarioController.Login(CPF, senha))
-                        {
-                            Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
-                            DashboardCliente.Dashboard(CPF);
-                        }
-
-                        Console.WriteLine("Login ou senha inválido");
+    
 
                         break;
 
+                    case 3:
+                        UsuarioController.BuscarTodosUsuarios();
+                        break;
                     default:
                         Console.WriteLine("Digite uma opção válida");
                         break;
@@ -96,7 +96,8 @@ namespace ConsoleApp.Interface
         {
             Console.WriteLine("Selecione a operação\n" +
                   "1 - Cadastrar\n" +
-                  "2 - Login");
+                  "2 - Login\n" +
+                  "3 - Usuários Ativos");
         }
     }
 }

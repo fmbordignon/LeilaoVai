@@ -8,6 +8,7 @@ namespace ConsoleApp.Negocio
 {
     public class DTOUsuario
     {
+        List<DTOLeilao> leiloes;
         public DTOUsuario()
         {
 
@@ -19,6 +20,7 @@ namespace ConsoleApp.Negocio
             Senha = senha;
             Nome = nome;
             Idade = idade;
+            leiloes = new List<DTOLeilao>();
         }
 
         public string CPF { get; set; }
@@ -28,5 +30,16 @@ namespace ConsoleApp.Negocio
         public string Nome { get; set; }
 
         public int Idade { get; set; }
+        
+        public void addLeilao(DTOLeilao leilao)
+        {
+            leiloes.Add(leilao);
+        }
+
+        public List<DTOLeilao> getLeiloes()
+        {
+            return leiloes;
+        }
+        
     }
 }

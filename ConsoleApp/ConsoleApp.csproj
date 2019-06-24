@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TipoUsuario.cs" />
     <Compile Include="Controller\LeilaoController.cs" />
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Interface\DashboardAdmin.cs" />

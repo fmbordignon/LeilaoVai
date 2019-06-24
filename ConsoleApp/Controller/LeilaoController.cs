@@ -34,10 +34,33 @@ namespace ConsoleApp.Controller
         {
             return DAOLeilao.BuscarLeilaoPorId(id);
         }
-
-        public static void AdicionarLeilao(DTOLeilao leilao)
+        public static void AdicionarLeilao(int id, DTOUsuario dono, string nomeProduto)
         {
+            DTOLeilao leilao = new DTOLeilao(id, dono, nomeProduto);
+            dono.addLeilao(leilao);
             DAOLeilao.Add(leilao);
+        }
+
+        public static void addLance(decimal lance, DTOLeilao leilao, string cpf)
+        {
+            if (lance > leilao.MaiorLance)
+            {
+                leilao.MaiorLance = lance;
+                leilao.CPFMaiorLance = cpf;
+
+                Console.WriteLine("Lance efetuado");
+
+            }
+            else
+            {
+                Console.WriteLine("Seu lance é menor que o maior lance do leilao, operação cancelada");
+            }
+
+        }
+
+        public static void fecharLeilao( DTOLeilao leilao)
+        {
+            DAOLeilao.FecharLeilao(leilao);
         }
     }
 }

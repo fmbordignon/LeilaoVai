@@ -56,9 +56,7 @@ namespace ConsoleApp.Interface
                         Console.WriteLine("Qual o produto leiloado?");
                         nomeProduto = Console.ReadLine();
 
-                        leilao = new DTOLeilao(++id, UsuarioController.BuscarUsuarioPorCPF(cpf), nomeProduto);
-
-                        LeilaoController.AdicionarLeilao(leilao);
+                        LeilaoController.AdicionarLeilao(++id, UsuarioController.BuscarUsuarioPorCPF(cpf), nomeProduto);
 
                         break;
 
@@ -76,16 +74,31 @@ namespace ConsoleApp.Interface
 
                         leilao = LeilaoController.BuscarLeilaoPorId(idLeilaoEscolhido);
 
-                        if (lance > leilao.MaiorLance)
-                        {
-                            leilao.MaiorLance = lance;
-                            leilao.CPFMaiorLance = cpf;
+                        LeilaoController.addLance(lance, leilao, cpf);
+                        
 
+                        break;
+                        
+
+
+                        break;
+                    case 5:
+                        Console.WriteLine("Leilões abertos");
+                        leiloes = LeilaoController.BuscarLeiloesAbertosUsuario(cpf);
+                        Console.WriteLine(string.Join("----------\n", leiloes));
+
+                        Console.WriteLine("Digite ID do leilão que deseja fechar\n Digite 0 para voltar");
+                        idLeilaoEscolhido = Convert.ToInt32(Console.ReadLine());
+                        if (idLeilaoEscolhido == 0)
+                        {
                             break;
                         }
-
-                        Console.WriteLine("Seu lance é menor que o maior lance do leilao, operação cancelada");
-
+                        else
+                        {
+                            leilao = LeilaoController.BuscarLeilaoPorId(idLeilaoEscolhido);
+                            LeilaoController.fecharLeilao(leilao);
+                            Console.WriteLine("Leilao Fechado");
+                        }
                         break;
 
                     case 0:
@@ -110,6 +123,7 @@ namespace ConsoleApp.Interface
                                "2 - Leilões fechados\n" +
                                "3 - Criar leilão\n" +
                                "4 - Dar lance\n" +
+                               "5 - Fechar Leilão\n" +
                                "0 - Voltar");
         }
 

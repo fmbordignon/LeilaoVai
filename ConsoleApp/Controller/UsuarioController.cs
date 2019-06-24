@@ -1,4 +1,5 @@
-﻿using ConsoleApp.Negocio;
+﻿using ConsoleApp.Interface;
+using ConsoleApp.Negocio;
 using ConsoleApp.Persistencia;
 using System;
 using System.Collections.Generic;
@@ -26,18 +27,45 @@ namespace ConsoleApp.Controller
             DAOUsuario.Add(novoUsuario);
         }
 
-        public static bool Login(string cpf, string senha)
+        public static void Login(string cpf, string senha, tipoUsuario tipo)
         {
-            var listaUsuarios = DAOUsuario.BuscarTodosUsuarios();
+            switch (tipo) {
+                case tipoUsuario.ADMIN:
+                    Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
+                    DashboardAdmin.Dashboard();
+                    break;
 
-            var usuarioEncontrado = listaUsuarios.Exists(x => x.CPF == cpf && x.Senha == senha);
+                case tipoUsuario.NORMAL:
+                    var listaUsuarios = DAOUsuario.BuscarTodosUsuarios();
 
-            return usuarioEncontrado;
+                    var usuarioEncontrado = listaUsuarios.Exists(x => x.CPF == cpf && x.Senha == senha);
+
+                    if (usuarioEncontrado)
+                    {
+                        Console.WriteLine("Bem-Vindo ao Sistema de Leilão");
+                        DashboardCliente.Dashboard(cpf);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Senha inválida");
+                    }
+                    break;
+
+            }
         }
 
         public static DTOUsuario BuscarUsuarioPorCPF(string cpf)
         {
             return DAOUsuario.BuscarPorCPF(cpf);
+        }
+
+        public static void BuscarTodosUsuarios()
+        {
+            List<DTOUsuario> usuarios = DAOUsuario.BuscarTodosUsuarios();
+            foreach(DTOUsuario u in usuarios)
+            {
+                Console.WriteLine("Cliente: " + u.Nome + "\ncpf: " + u.CPF + "\n--------\n");
+            }
         }
 
     }
